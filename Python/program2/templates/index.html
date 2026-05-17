@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>성적 관리 프로그램</title>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+            }
+
+            h1 {
+                margin-bottom: 30px;
+            }
+
+            form {
+                margin-bottom: 30px;
+                padding: 20px;
+                border: 1px solid #cccccc;
+            }
+
+            input {
+                padding: 8px;
+                margin: 5px;
+            }
+
+            button {
+                padding: 8px 15px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            table,
+            th,
+            td {
+                border: 1px solid #cccccc;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                text-align: center;
+            }
+
+            .message {
+                margin-top: 20px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>성적 관리 프로그램</h1>
+
+        <h2>학생 검색</h2>
+
+        <form action="/search" method="GET">
+            <input type="text" name="name" placeholder="학생 이름 입력" required />
+            <button type="submit">검색</button>
+        </form>
+
+        <h2>학생 추가</h2>
+
+        <form action="/add" method="POST">
+            <input type="text" name="id" placeholder="학번" required />
+            <input type="text" name="name" placeholder="이름" required />
+            <input type="number" name="mid" placeholder="중간고사 점수" required />
+            <input type="number" name="final" placeholder="기말고사 점수" required />
+
+            <button type="submit">추가</button>
+        </form>
+
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %} {% if students %}
+        <table>
+            <thead>
+                <tr>
+                    <th>학번(ID)</th>
+                    <th>이름(Name)</th>
+                    <th>중간고사(Mid)</th>
+                    <th>기말고사(Final)</th>
+                    <th>평균(Average)</th>
+                    <th>등급(Grade)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] }}</td>
+                    <td>{{ student[4] }}</td>
+                    <td>{{ student[5] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </body>
+</html>

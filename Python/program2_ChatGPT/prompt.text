@@ -1,0 +1,28 @@
+1. 🚀 완벽 제어용 마스터 프롬프트 (그대로 복사/붙여넣기)
+[프롬프트 시작] 너는 파이썬 Flask 기반 웹 개발 전문가야. 내가 제공하는 요구사항에 맞춰 '성적 관리 프로그램'의 전체 코드를 작성해 줘.
+[상황 및 전제 조건]
+작업 폴더 최상단(program/)에서 터미널을 열고 python main/app.py를 실행할 거야.
+data/student.db 파일은 내가 이미 init_db.py를 실행해서 만들어 두었어.
+데이터베이스 안에는 student라는 테이블이 있고, 컬럼명은 엑셀과 동일하게 ID, Name, Mid, Final, Average, Grade 야.
+[폴더 구조] program/ ├── data/ │    └── student.db ├── main/ │    ├── search.py │    ├── add.py │    └── app.py └── templates/ └── index.html
+[파일별 필수 구현 기능 (총 4개 파일)]
+1. main/app.py
+Flask 서버를 실행하는 메인 파일이야. app = Flask(__name__, template_folder='../templates')로 설정해서 템플릿 경로 오류가 나지 않게 해줘.
+@app.route('/'): index.html 화면을 렌더링해.
+@app.route('/search', methods=['GET']): main.search 모듈을 임포트하여 함수를 호출해 처리해.
+@app.route('/add', methods=['POST']): main.add 모듈을 임포트하여 함수를 호출해 처리해.
+2. main/search.py
+sqlite3를 사용해 data/student.db에 연결해.
+사용자가 입력한 Name(이름)을 기준으로 student 테이블에서 데이터를 조회(SELECT * FROM student WHERE Name = ?)하는 함수를 작성해.
+결과를 반환해줘.
+3. main/add.py
+sqlite3를 사용해 data/student.db에 연결해.
+학번(ID), 이름(Name), 중간고사 점수(Mid), 기말고사 점수(Final)를 인자로 받아.
+평균(Average) = (중간고사 + 기말고사) / 2
+등급(Grade) 기준 (반드시 지킬 것): 90점 이상 A, 80점 이상90점 미만 B, 70점 이상80점 미만 C, 60점 이상~70점 미만 D, 60점 미만 F.
+계산된 값을 포함해 INSERT INTO student (ID, Name, Mid, Final, Average, Grade) VALUES (?, ?, ?, ?, ?, ?) 쿼리를 실행하고 DB를 커밋(commit)하는 함수를 만들어.
+4. templates/index.html
+화면 상단에 '학생 검색' 폼 (이름 입력, GET 방식 /search).
+화면 하단에 '학생 추가' 폼 (학번, 이름, 중간고사, 기말고사 입력, POST 방식 /add).
+검색이나 추가 처리 후 넘어온 데이터 결과를 화면에 깔끔한 표(Table)로 출력해 줘.
+설명은 생략하고, 내가 4개의 파일(app.py, search.py, add.py, index.html)에 각각 바로 복사-붙여넣기 할 수 있도록 파일명과 코드 블록만 정확하게 출력해. [프롬프트 끝]

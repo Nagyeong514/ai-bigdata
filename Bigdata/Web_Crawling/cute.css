@@ -1,0 +1,31 @@
+p {
+    color: hotpink;
+}
+h1 {
+    color: hotpink;
+    font-size: 40px;
+}
+h2 {
+    color: tomato;
+    font-size: 34px;
+}
+h3 {
+    color: orange;
+    font-size: 28px;
+}
+h4 {
+    color: gold;
+    font-size: 22px;
+}
+h5 {
+    color: limegreen;
+    font-size: 18px;
+}
+h6 {
+    color: dodgerblue;
+    font-size: 14px;
+}
+p {
+    color: plum;
+}
+/* 맨 밑에거가 적용이 되는거구나 */
